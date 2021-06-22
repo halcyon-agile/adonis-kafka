@@ -20,15 +20,10 @@ class Kafka implements KafkaContract {
       throw new Error('You need define a group')
     }
 
-    this.consumer = new Consumer(this.Logger, this.config)
-    this.producer = new Producer(this.Logger, this.config)
+    this.consumer = new Consumer(this.config)
+    this.producer = new Producer(this.config)
 
-    this.consumer
-      .start()
-      .then(() => {
-        this.Logger.info('Kafka consumer started...')
-      })
-      .catch((e) => console.error(`[consumer] ${e.message}`, e))
+    this.consumer.start().catch((e) => this.Logger.error(`[consumer] ${e.message}`, e))
 
     this.producer.start()
   }

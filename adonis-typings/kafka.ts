@@ -1,6 +1,4 @@
 declare module '@ioc:halcyon-agile/adonis-kafka' {
-  import * as kafkajs from 'kafkajs'
-
   /**
    * Define the config properties on this interface and they will appear
    * everywhere.

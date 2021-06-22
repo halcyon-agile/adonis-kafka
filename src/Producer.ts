@@ -1,14 +1,11 @@
 import { Kafka } from 'kafkajs'
-import { LoggerContract } from '@ioc:Adonis/Core/Logger'
 import { KafkaConfig } from '@ioc:halcyon-agile/adonis-kafka'
 
 class Producer {
-  public Logger: LoggerContract
   public config: KafkaConfig
   public producer
 
-  constructor(Logger, config) {
-    this.Logger = Logger
+  constructor(config) {
     this.config = config
 
     const kafka = new Kafka({
@@ -49,8 +46,6 @@ class Producer {
       topic,
       messages,
     })
-
-    this.Logger.info('sent data to kafka.')
   }
 }
 

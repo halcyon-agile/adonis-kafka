@@ -1,9 +1,7 @@
 import { Kafka } from 'kafkajs'
-import { LoggerContract } from '@ioc:Adonis/Core/Logger'
 import { KafkaConfig } from '@ioc:halcyon-agile/adonis-kafka'
 
 class Consumer {
-  public Logger: LoggerContract
   public config: KafkaConfig
   public topics: string[]
   public events: object
@@ -11,8 +9,7 @@ class Consumer {
   public timeout: any = 0
   public consumer
 
-  constructor(Logger, config) {
-    this.Logger = Logger
+  constructor(config) {
     this.config = config
     this.topics = []
     this.events = {}
