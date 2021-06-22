@@ -1,0 +1,49 @@
+import Consumer from './Consumer'
+import Producer from './Producer'
+import { KafkaContract } from '@ioc:halcyon-agile/adonis-kafka'
+
+class Kafka implements KafkaContract {
+  public consumer
+  public producer
+  public config
+  public Logger
+
+  constructor(config, Logger) {
+    this.config = config.get('kafka')
+    this.Logger = Logger
+  }
+
+  public start() {
+    const { groupId } = this.config
+
+    if (groupId === null || groupId === undefined || groupId === '') {
+      throw new Error('You need define a group')
+    }
+
+    this.consumer = new Consumer(this.Logger, this.config)
+    this.producer = new Producer(this.Logger, this.config)
+
+    this.consumer
+      .start()
+      .then(() => {
+        this.Logger.info('Kafka consumer started...')
+      })
+      .catch((e) => console.error(`[consumer] ${e.message}`, e))
+
+    this.producer.start()
+  }
+
+  public on(topic, callback) {
+    this.consumer.on(topic, callback)
+  }
+
+  public send(topic, data) {
+    this.producer.send(topic, data)
+  }
+
+  public async disconnect() {
+    await this.consumer.consumer.disconnect()
+  }
+}
+
+export default Kafka
