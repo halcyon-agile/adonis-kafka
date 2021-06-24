@@ -7,9 +7,9 @@
     "build/adonis-typings",
     "build/providers",
     "build/src",
-    "build/standalone.d.ts",
-    "build/standalone.js",
-    "build/exceptions.json"
+    "build/templates",
+    "build/instructions.js",
+    "build/instructions.d.ts"
   ],
   "scripts": {
     "mrm": "mrm --preset=@adonisjs/mrm-preset",
@@ -17,7 +17,8 @@
     "test": "node japaFile.js",
     "clean": "del build",
     "compile": "npm run lint && npm run clean && tsc",
-    "build": "npm run compile",
+    "copyfiles": "copyfiles \"templates/**/*.txt\" build",
+    "build": "npm run compile && npm run copyfiles",
     "commit": "git-cz",
     "release": "np",
     "version": "npm run build",
@@ -79,6 +80,7 @@
   },
   "dependencies": {
     "@adonisjs/sink": "^5.1.5",
+    "copyfiles": "^2.4.1",
     "kafkajs": "^1.15.0"
   },
   "peerDependencies": {
