@@ -34,33 +34,12 @@ yarn add @halcyon-agile/adonis-kafka
 npm install @halcyon-agile/adonis-kafka
 ```
 
-### Config
+## Setup
 
-`config/kafka.ts`
+You can configure the project by running the following command:
 
-```ts
-import Env from '@ioc:Adonis/Core/Env'
-
-const kafkaConfig = {
-  clientId: Env.get('KAFKA_CLIENT_ID', 'default-client'),
-  groupId: Env.get('KAFKA_GROUP_ID', 'default-group'),
-  brokers: ['localhost:9092'],
-  autoCommit: false,
-}
-
-export default kafkaConfig
-```
-
-### Manually register the provider :)
-
-.adonisrc.json
-
-```json
-"providers": [
-  "./providers/AppProvider",
-  "@adonisjs/core",
-  "@halcyon-agile/adonis-kafka"
-]
+```sh
+node ace invoke @halcyon-agile/adonis-kafka
 ```
 
 ### Adding Topics

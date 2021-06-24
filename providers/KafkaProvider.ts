@@ -25,10 +25,16 @@ export default class KafkaProvider {
   }
 
   public boot() {
-    this.application.container.use('halcyon-agile/adonis-kafka').start()
+    const Config = this.application.container.resolveBinding('Adonis/Core/Config')
+    if (String(Config.get('kafka.enabled')) === 'true') {
+      this.application.container.use('halcyon-agile/adonis-kafka').start()
+    }
   }
 
   public async shutdown() {
-    await this.application.container.use('halcyon-agile/adonis-kafka').disconnect()
+    const Config = this.application.container.resolveBinding('Adonis/Core/Config')
+    if (String(Config.get('kafka.enabled')) === 'true') {
+      await this.application.container.use('halcyon-agile/adonis-kafka').disconnect()
+    }
   }
 }

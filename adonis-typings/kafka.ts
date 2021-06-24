@@ -4,9 +4,13 @@ declare module '@ioc:halcyon-agile/adonis-kafka' {
    * everywhere.
    */
   export interface KafkaConfig {
+    enabled: string
     clientId: string
     groupId: string
-    brokers: string[]
+    url: string
+    port: number
+    urls?: string
+    fromBeginning: boolean
     autoCommit: boolean
     connectionTimeout?: number
     requestTimeout?: number

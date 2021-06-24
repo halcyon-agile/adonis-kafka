@@ -78,6 +78,7 @@
     }
   },
   "dependencies": {
+    "@adonisjs/sink": "^5.1.5",
     "kafkajs": "^1.15.0"
   },
   "peerDependencies": {

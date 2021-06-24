@@ -17,9 +17,11 @@ class Consumer {
     this.timeout = null
     this.consumer = null
 
+    const brokers = this.config.urls ? this.config.urls.split(',') : null
+
     const kafka = new Kafka({
       clientId: this.config.clientId || 'local',
-      brokers: this.config.brokers || ['localhost:9092'],
+      brokers: brokers || [`${this.config.url}:${this.config.port}`],
       connectionTimeout: this.config.connectionTimeout || 3000,
       requestTimeout: this.config.requestTimeout || 60000,
     })

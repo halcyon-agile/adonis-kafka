@@ -1,0 +1,11 @@
+declare module '@ioc:halcyon-agile/adonis-kafka' {
+  // @ts-ignore
+  export function on(arg0: string, arg1: (data: any, commit: any) => void) {
+    throw new Error('Function not implemented.')
+  }
+
+  // @ts-ignore
+  export function send(arg0: string, arg1: { test: string }) {
+    throw new Error('Function not implemented.')
+  }
+}

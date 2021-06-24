@@ -8,9 +8,11 @@ class Producer {
   constructor(config) {
     this.config = config
 
+    const brokers = this.config.urls ? this.config.urls.split(',') : null
+
     const kafka = new Kafka({
       clientId: this.config.clientId,
-      brokers: this.config.brokers,
+      brokers: brokers || [`${this.config.url}:${this.config.port}`],
       connectionTimeout: this.config.connectionTimeout || 3000,
       requestTimeout: this.config.requestTimeout || 60000,
     })
@@ -23,6 +25,10 @@ class Producer {
   }
 
   public async send(topic, data) {
+    if (this.config.enabled !== 'true') {
+      return
+    }
+
     if (typeof data !== 'object') {
       throw new Error('You need send a json object in data argument')
     }
