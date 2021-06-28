@@ -1,4 +1,4 @@
-import { Kafka } from 'kafkajs'
+import { Kafka, logLevel } from 'kafkajs'
 import { KafkaConfig } from '@ioc:halcyon-agile/adonis-kafka'
 
 class Consumer {
@@ -24,6 +24,7 @@ class Consumer {
       brokers: brokers || [`${this.config.url}:${this.config.port}`],
       connectionTimeout: this.config.connectionTimeout || 3000,
       requestTimeout: this.config.requestTimeout || 60000,
+      logLevel: this.config.logLevel || logLevel.ERROR,
     })
 
     this.consumer = kafka.consumer({ groupId: this.config.groupId })

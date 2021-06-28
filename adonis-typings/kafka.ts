@@ -15,6 +15,7 @@ declare module '@ioc:halcyon-agile/adonis-kafka' {
     connectionTimeout?: number
     requestTimeout?: number
     partitionsConcurrently?: number
+    logLevel: any
   }
 
   export interface KafkaContract {
@@ -25,6 +26,8 @@ declare module '@ioc:halcyon-agile/adonis-kafka' {
   }
 
   const Kafka: KafkaContract
+
+  export * from 'kafkajs'
 
   export default Kafka
 }
