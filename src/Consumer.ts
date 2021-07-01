@@ -43,7 +43,7 @@ class Consumer {
           }
 
           if (commit) {
-            const offset = String(Number(message.offset))
+            const offset = (Number(message.offset) + 1).toString()
 
             await this.consumer.commitOffsets([{ topic, partition, offset }])
           }
