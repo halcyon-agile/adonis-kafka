@@ -29,12 +29,12 @@ class Kafka implements KafkaContract {
   }
 
   public on(topic, callback) {
-    if (!this.config.enabled) return callback
+    if (this.config.enabled !== 'true') return callback
     this.consumer.on(topic, callback)
   }
 
   public send(topic, data) {
-    if (!this.config.enabled) return
+    if (this.config.enabled !== 'true') return
     this.producer.send(topic, data)
   }
 
