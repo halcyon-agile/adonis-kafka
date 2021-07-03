@@ -1,6 +1,6 @@
 {
   "name": "@halcyon-agile/adonis-kafka",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Kafka Provider for AdonisJs",
   "main": "build/providers/KafkaProvider.js",
   "files": [
